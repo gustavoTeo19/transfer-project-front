@@ -104,6 +104,5 @@
   },
   "cli": {
     "analytics": "bd9f3db1-15ea-46a1-89a8-00d5545a1bc8"
-  },
-  "enableIvy": false
+  }
 }

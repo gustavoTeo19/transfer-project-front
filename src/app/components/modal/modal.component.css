@@ -1,0 +1,45 @@
+.botao {
+    margin: 5px;
+    margin-top: 70px;
+    width: 200px;
+  }
+
+  .criar-pensamentos {
+    margin: 0rem 20rem 20rem 20rem;
+    padding: 2rem 0;
+  }
+  
+  .criar-pensamentos form {
+    background: #D9D9D9;
+  
+    border: none;
+    border-radius: 20px;
+  
+    display: flex;
+    flex-direction: column;
+  
+    padding: 2rem;
+  }
+  
+  .criar-pensamentos form label {
+    color: #154580;
+    font-weight: bold;
+    margin: 0 0 1rem;
+  }
+  
+  .criar-pensamentos form .input {
+    border: none;
+    height: 40px;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    margin: 0.5rem 0 2rem;
+  }
+  
+  
+  .criar-pensamentos form .textarea {
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    margin: 0.5rem 0 2rem;
+  }
+  

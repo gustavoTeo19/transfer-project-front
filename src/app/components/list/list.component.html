@@ -1,0 +1,29 @@
+<section class="container">
+    <header class="header d-flex">
+        <button routerLink="/modal" class="botao">Realizar nova transferência</button>
+    </header>
+    
+    <div class="mural" *ngIf="listTransfer.length > 0">
+       <div *ngFor="let transfer of listTransfer">
+        <table>
+            <tr>
+              <th>Conta Ori.</th>
+              <th>Conta Dest.</th>
+              <th>Val. Transferido</th>
+              <th>Taxa Aplicada</th>
+              <th>Data Transferência</th>
+              <th>Data Agendamento</th>
+            </tr>
+            <tr>
+              <td>{{transfer.sourceAccount}}</td>
+              <td>{{transfer.destinationAccount}}</td>
+              <td>{{formatarComoDinheiro(transfer.transferAmount)}}</td>
+              <td>{{formatarComoDinheiro(transfer.appliedFee)}}</td>
+              <td>{{formatarData(transfer.transferDate)}}</td>
+              <td>{{formatarData(transfer.schedulingDate)}}</td>
+            </tr>
+          </table>
+       </div>
+       
+    </div>
+</section>

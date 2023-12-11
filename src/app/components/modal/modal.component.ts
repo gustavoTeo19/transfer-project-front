@@ -46,6 +46,10 @@ export class ModalComponent implements OnInit {
     this.formattedAmount = `R$ ${this.transfer.transferAmount.toFixed(2)}`;
   }
   
+  validateNumberInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9.,]/g, '').replace(/(\..*?)\..*/g, '$1');
+  }
   create(): void {
     console.log();
     

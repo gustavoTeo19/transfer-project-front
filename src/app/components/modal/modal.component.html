@@ -13,15 +13,16 @@
          
          [(ngModel)]="transfer.destinationAccount">
        
-        <label for="autoria">Valor</label>
+        <label for="valor">Valor</label>
         <input type="text"
-         id="autoria"
-         name="autoria"
+         id="valor"
+         name="valor"
          class="input"
          placeholder="R$ 100,00"
          required
          (blur)="onAmountInput($event)"
-         [(ngModel)]="formattedAmount">
+         [(ngModel)]="formattedAmount"
+         (input)="validateNumberInput($event)">
 
          <label for="autoria">Data da Transferência</label>
          <input type="date"

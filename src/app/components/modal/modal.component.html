@@ -2,13 +2,15 @@
     <header class="header">
         <h2>Faça uma nova transferência:</h2>
     </header>
-    <form>
+    <form #transferForm="ngForm">
         <label for="dest">Conta destino</label>
         <input type="textarea"
          id="dest"
          name="dest"
          class="input"
          placeholder="Digite o número da conta"
+         required
+         
          [(ngModel)]="transfer.destinationAccount">
        
         <label for="autoria">Valor</label>
@@ -17,13 +19,22 @@
          name="autoria"
          class="input"
          placeholder="R$ 100,00"
+         required
          (blur)="onAmountInput($event)"
          [(ngModel)]="formattedAmount">
 
          <label for="autoria">Data da Transferência</label>
-         <input type="date" id="diaa" name="diaa" class="input" [min]="minDate" [(ngModel)]="transfer.transferDate"/>
+         <input type="date"
+          id="diaa"
+          name="diaa"
+          class="input"
+          [min]="minDate"
+          required
+          [(ngModel)]="transfer.transferDate"/>
         <div class="acoes">
-            <button (click)="create()" class="botao">Salvar</button>
+            <button (click)="create()"
+             [ngClass]="{'botao': transferForm.valid, 'botaoInvalido': transferForm.invalid}"
+             [disabled]="transferForm.invalid">Salvar</button>
             <button (click)="cancel()" class="botao">Cancelar</button>
         </div>
     </form>

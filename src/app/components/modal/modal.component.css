@@ -3,7 +3,11 @@
     margin-top: 70px;
     width: 200px;
   }
-
+  .botaoInvalido {
+    margin: 5px;
+    margin-top: 70px;
+    width: 200px;
+  }
   .make-transfer {
     margin: 0rem 20rem 20rem 20rem;
     padding: 2rem 0;

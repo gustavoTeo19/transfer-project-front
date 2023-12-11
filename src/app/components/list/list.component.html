@@ -4,7 +4,7 @@
     </header>
     
     <div class="mural" *ngIf="listTransfer.length > 0">
-       <div *ngFor="let transfer of listTransfer">
+       <div>
         <table>
             <tr>
               <th>Conta Ori.</th>
@@ -14,13 +14,13 @@
               <th>Data Transferência</th>
               <th>Data Agendamento</th>
             </tr>
-            <tr>
+            <tr *ngFor="let transfer of listTransfer">
               <td>{{transfer.sourceAccount}}</td>
               <td>{{transfer.destinationAccount}}</td>
-              <td>{{formatarComoDinheiro(transfer.transferAmount)}}</td>
-              <td>{{formatarComoDinheiro(transfer.appliedFee)}}</td>
+              <td>{{formatarComoDinheiro(transfer.transferAmount!)}}</td>
+              <td>{{formatarComoDinheiro(transfer.appliedFee!)}}</td>
               <td>{{formatarData(transfer.transferDate)}}</td>
-              <td>{{formatarData(transfer.schedulingDate)}}</td>
+              <td>{{formatarData(transfer.schedulingDate || '')}}</td>
             </tr>
           </table>
        </div>

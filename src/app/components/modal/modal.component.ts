@@ -55,8 +55,14 @@ export class ModalComponent implements OnInit {
       transferDate: this.convertToDateWithTime(this.transfer.transferDate),
       transferAmount: this.transfer.transferAmount
     }
-    console.log(body);
-    // this.router.navigate(['/home'])
+
+    this.service.create(body).subscribe(() => {
+      this.router.navigate(['/home'])
+    },
+    (error) => {
+      alert(error.error)
+
+    })
   }
   cancel(): void {
     this.router.navigate(['/home'])

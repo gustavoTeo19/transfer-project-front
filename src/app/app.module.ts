@@ -8,11 +8,10 @@ import { ListComponent } from './components/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule} from '@angular/material/core'
-import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+// import {MatDatepickerModule} from '@angular/material/datepicker';
+// import {MatInputModule} from '@angular/material/input';
+// import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MatNativeDateModule} from '@angular/material/core'
 
 @NgModule({
   declarations: [
@@ -26,11 +25,9 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/m
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule
+    
   ],
-  providers: [
-    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

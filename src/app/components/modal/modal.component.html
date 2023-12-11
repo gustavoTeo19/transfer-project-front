@@ -1,38 +1,27 @@
-<section class="container criar-pensamentos ff-inter">
+<section class="container make-transfer ff-inter">
     <header class="header">
         <h2>Faça uma nova transferência:</h2>
     </header>
     <form>
-        <label for="pensamento">Conta destino</label>
+        <label for="dest">Conta destino</label>
         <input type="textarea"
-         id="pensamento"
-         name="pensamento"
+         id="dest"
+         name="dest"
          class="input"
-         placeholder="Digite um pensamento"
-         [(ngModel)]="transfer.sourceAccount">
-         
-        <label for="autoria">Data da Transferência</label>
-        <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        <input type="text"
-         id="autoria"
-         name="autoria"
-         class="input"
-         placeholder="Digite a autoria"
+         placeholder="Digite o número da conta"
          [(ngModel)]="transfer.destinationAccount">
-
+       
         <label for="autoria">Valor</label>
         <input type="text"
          id="autoria"
          name="autoria"
          class="input"
-         placeholder="Digite a autoria"
-         [(ngModel)]="transfer.transferAmount">
+         placeholder="R$ 100,00"
+         (blur)="onAmountInput($event)"
+         [(ngModel)]="formattedAmount">
+
+         <label for="autoria">Data da Transferência</label>
+         <input type="date" id="diaa" name="diaa" class="input" [min]="minDate" [(ngModel)]="transfer.transferDate"/>
         <div class="acoes">
             <button (click)="create()" class="botao">Salvar</button>
             <button (click)="cancel()" class="botao">Cancelar</button>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { BackendReturn } from '../interfaces/transfer';
+import { BackendReturn, Transfer } from '../interfaces/transfer';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,5 +16,10 @@ export class ServiceService {
     const url = `${this.API}/list-transfer`
     return this.http.get<BackendReturn>(url)
   }
+
+  create(transfer: Transfer): Observable<Transfer> {
+    return this.http.post<Transfer>(this.API, transfer);
+  }
+
 
 }

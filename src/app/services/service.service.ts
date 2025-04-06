@@ -13,7 +13,7 @@ export class ServiceService {
   constructor(private http: HttpClient) { }
 
   list(): Observable<BackendReturn>{
-    const url = `${this.API}/list-transfer`
+    const url = `${this.API}/list-transfers`
     return this.http.get<BackendReturn>(url)
   }
 

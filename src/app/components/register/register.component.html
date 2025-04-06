@@ -1,0 +1,77 @@
+<!-- <div class="register-container">
+    <h2>Cadastro</h2>
+  
+    <form (ngSubmit)="register()">
+      <div>
+        <label for="username">Usuário</label>
+        <input
+          type="text"
+          id="username"
+          [(ngModel)]="user.username"
+          name="username"
+          required
+        />
+      </div>
+  
+      <div>
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          [(ngModel)]="user.password"
+          name="password"
+          required
+        />
+      </div>
+  
+      <button type="submit">Cadastrar</button>
+    </form>
+  
+    <p *ngIf="mensagem">{{ mensagem }}</p>
+  </div>
+   -->
+
+   <div class="register-wrapper">
+    <h2>Crie sua conta:</h2>
+  
+    <form (ngSubmit)="register()" class="register-form">
+      <div class="form-group">
+        <label for="username">Email</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="user.email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input
+          type="text"
+          id="name"
+          name="username"
+          [(ngModel)]="user.name"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+        />
+      </div>
+  
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="button" class="btn btn-secondary" (click)="irParaLogin()">Fazer login</button>
+      </div>
+    </form>
+  </div>
+  

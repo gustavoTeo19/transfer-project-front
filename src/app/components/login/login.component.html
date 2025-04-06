@@ -1,0 +1,35 @@
+<div class="register-wrapper">
+    <h2>Entrar na sua conta</h2>
+  
+    <form (ngSubmit)="login()" class="register-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+        />
+      </div>
+  
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+        <button type="button" class="btn btn-secondary" (click)="irParaCadastro()">Criar conta</button>
+      </div>
+  
+      <p *ngIf="mensagem" class="error">{{ mensagem }}</p>
+    </form>
+  </div>
+  

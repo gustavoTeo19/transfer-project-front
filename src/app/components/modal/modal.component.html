@@ -4,16 +4,36 @@
     </header>
     <form #transferForm="ngForm">
         <label for="dest">Conta destino</label>
-        <input type="textarea"
+        <input type="text"
          id="dest"
          name="dest"
          class="input"
          placeholder="Digite o número da conta"
          required
-         
+         [value]="transfer.destinationAccount"
+         (ngModelChange)="onContaInput($event)"
+         autocomplete="off"
          [(ngModel)]="transfer.destinationAccount">
-       
-        <label for="valor">Valor</label>
+
+         <ul *ngIf="contasFiltradas.length > 0" class="suggestions">
+            <li
+              *ngFor="let fav of contasFiltradas"
+              (click)="usarConta(fav.contaDestino)"
+              style="cursor: pointer; padding: 4px 0;"
+            >
+              {{ fav.nomeFavorito }} ({{ fav.contaDestino }})
+            </li>
+          </ul>
+            
+        <button
+            *ngIf="mostrarBotaoFavoritar"
+            type="button"
+            class="botaoFavoritar"
+            (click)="favoritarConta()"
+            >
+            Salvar conta como favorita
+        </button>
+                <label for="valor">Valor</label>
         <input type="text"
          id="valor"
          name="valor"

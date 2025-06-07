@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Transfer } from 'src/app/interfaces/transfer';
 import { ServiceService } from 'src/app/services/service.service';
+import { FavoriteService, Favorite } from 'src/app/services/favorite.service';
 
 @Component({
   selector: 'app-modal',
@@ -19,7 +20,12 @@ export class ModalComponent implements OnInit {
     transferAmount: 0
   }
 
-  constructor( private router: Router,
+  favoritos: Favorite[] = [];
+  contasFiltradas: Favorite[] = [];
+  mostrarBotaoFavoritar: boolean = false;
+  user: string = "";
+
+  constructor( private router: Router,  private favoriteService: FavoriteService,
                 private service: ServiceService ) { 
     const today = new Date();
     const month = `${today.getMonth() + 1}`.padStart(2, '0'); // adiciona zero à esquerda se necessário
@@ -29,6 +35,48 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = this.service.getUserFromToken() || '';
+    this.favoriteService.getFavorites(this.user).subscribe(favs => this.favoritos = favs); // use o ID real do usuário
+    
+    console.log('Usuário logado:', this.user);
+  }
+
+  usarConta(conta: string): void {
+    this.transfer.destinationAccount = conta;
+    this.contasFiltradas = [];
+    this.mostrarBotaoFavoritar = false;
+  }
+
+  favoritarConta(): void {
+    const conta = this.transfer.destinationAccount || '';
+    const nome = prompt('Digite um nome para essa conta favorita:');
+
+    if (!nome || conta.trim() === '') return;
+
+
+    const novoFav: Favorite = {
+      userId: this.user, 
+      contaDestino: conta,
+      nomeFavorito: nome
+    };
+
+    this.favoriteService.saveFavorite(novoFav).subscribe(() => {
+      alert('Conta salva como favorita!');
+      this.favoriteService.getFavorites(this.user).subscribe(favs => this.favoritos = favs);
+      this.mostrarBotaoFavoritar = false;
+    });
+  }
+
+  onContaInput(value: string): void {
+    this.transfer.destinationAccount = value;
+
+    this.contasFiltradas = this.favoritos.filter(f =>
+      f.contaDestino.toLowerCase().includes(value.toLowerCase())
+    );
+
+    this.mostrarBotaoFavoritar =
+      value.length > 2 &&
+      !this.favoritos.some(f => f.contaDestino === value);
   }
   
   convertToDateWithTime(dateString: string): string {
@@ -54,7 +102,8 @@ export class ModalComponent implements OnInit {
     console.log();
     
     var body = {
-      sourceAccount: "xxxx",
+       sourceAccount: this.user,
+     // sourceAccount: "!",
       destinationAccount: this.transfer.destinationAccount,
       transferDate: this.convertToDateWithTime(this.transfer.transferDate),
       transferAmount: this.transfer.transferAmount

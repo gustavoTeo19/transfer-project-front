@@ -29,8 +29,13 @@ export class RegisterComponent {
         this.router.navigate(['/home']);
       },
       error: (err) => {
-        console.log(err)
-        this.mensagem = 'Erro ao cadastrar. Verifique os dados ou tente outro usuário.';
+        if (err.status === 400) {
+          alert('Usuário já existente');
+        } else if (err.status === 404) {
+          alert('Usuário não encontrado.');
+        } else {
+          alert('Erro ao tentar logar. Tente novamente mais tarde.');
+        }
       }
     });
   }
